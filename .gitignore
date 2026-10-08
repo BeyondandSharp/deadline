@@ -216,3 +216,22 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+/DeadlineRepository10/draft
+/DeadlineRepository10/draft3
+/DeadlineRepository10/events
+/DeadlineRepository10/jobs
+/DeadlineRepository10/jobsArchived
+/DeadlineRepository10/maxStartup
+/DeadlineRepository10/plugins
+/DeadlineRepository10/pythonsync
+/DeadlineRepository10/pythonsync3
+/DeadlineRepository10/reports
+/DeadlineRepository10/scripts
+/DeadlineRepository10/settings
+/DeadlineRepository10/submission
+/DeadlineRepository10/ubl
+/DeadlineRepository10/vmx
+/DeadlineRepository10/api
+/DeadlineRepository10/backup
+/DeadlineRepository10/balancer
+/DeadlineRepository10/cloud
