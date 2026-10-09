@@ -1,0 +1,222 @@
+; CUSTOM OVERRIDE of the stock Deadline Blender job properties.
+;
+; Repository:  <DeadlineRepository>/custom/plugins/Blender/Blender.options
+; Factory file: <DeadlineRepository>/plugins/Blender/Blender.options  (left untouched)
+;
+; Every section below maps 1:1 to a key in the job's plugin info file
+; (blender_plugin_info.job). This file is what builds the "Blender" tab of the
+; Job Properties dialog (Monitor: right-click a job -> Modify Job Properties),
+; so everything the Blender submission dialog can set is editable afterwards as
+; well, on an already submitted job.
+;
+; Required=true plus DisableIfBlank=false is the combination the Deadline docs use
+; for a control that must always be shown, including for jobs that do not have the
+; key yet (a job submitted with all options left at their defaults). Every control
+; therefore also carries a DefaultValue that means "use the .blend file value".
+;
+; When a key is absent, empty, or set to "Use Scene Setting", the plugin falls back
+; to the value stored in the .blend file - exactly how the stock plugin behaved.
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filenameSave
+Label=Output
+Category=Rendering Options
+Index=0
+Description=The output filename path
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=64
+Label=Threads
+Category=Rendering Options
+Index=1
+Description=The number of rendering threads (0 for system processor count)
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Rendering Options
+Index=2
+Description=The build of Blender to force.
+Required=false
+DisableIfBlank=true
+
+; ---------------------------------------------------------------------------
+; Blender Settings - the render options added by the custom submitter.
+; All of them also appear in the Blender submission dialog; changing them here
+; affects the tasks that this job still has to render.
+; ---------------------------------------------------------------------------
+
+[Version]
+Type=String
+Label=Blender Version
+Category=Blender Settings
+Index=0
+Description=The major.minor version of the Blender that submitted the job. Selects the [Blender_<version>_RenderExecutable] configuration entry on the Worker and fills the {version} placeholder of the shared render executable template. Blank for jobs submitted from the Monitor or Launcher.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[VersionFull]
+Type=String
+Label=Blender Version (full)
+Category=Blender Settings
+Index=1
+Description=The full version of the Blender that submitted the job (for example 4.2.1). Fills the {version_full} placeholder of the shared render executable template. Normally filled in automatically; edit it to point an existing job at a differently named installation.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[RenderEngine]
+Type=enum
+Values=Use Scene Setting;cycles;eevee;workbench
+Label=Render Engine
+Category=Blender Settings
+Index=2
+Description=Overrides the render engine at render time. "Use Scene Setting" keeps the engine stored in the .blend file.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+[RenderScene]
+Type=String
+Label=Scene
+Category=Blender Settings
+Index=3
+Description=The scene to render. Leave blank or set to "Use Scene Setting" to render the scene that the .blend file is saved on.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+[ViewLayer]
+Type=String
+Label=View Layer
+Category=Blender Settings
+Index=4
+Description=The view layer to render. All other view layers are disabled for the render, matching the AWS Deadline Cloud behaviour. "Use Scene Setting" renders every layer as stored in the .blend file.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+[Camera]
+Type=String
+Label=Camera
+Category=Blender Settings
+Index=5
+Description=The camera to render. "Use Scene Setting" keeps the camera stored in the .blend file.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+[ImageFormat]
+Type=enum
+Values=Use Scene Setting;BMP;CINEON;DDS;DPX;HDR;IRIS;JPEG;JPEG2000;OPEN_EXR;OPEN_EXR_MULTILAYER;PNG;TARGA;TARGA_RAW;TIFF;WEBP;AVIF;AVI_JPEG;AVI_RAW;FFMPEG
+Label=Image Format
+Category=Blender Settings
+Index=6
+Description=Overrides the output image format. "Use Scene Setting" keeps the format stored in the .blend file. The list covers every format Blender can store in a scene (including the movie formats), so a value coming from a .blend is always selectable.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+[ResolutionX]
+Type=integer
+Minimum=0
+Maximum=65536
+Label=Resolution X
+Category=Blender Settings
+Index=7
+Description=Overrides the render width. 0 keeps the resolution stored in the .blend file. Set both Resolution X and Resolution Y, or leave both at 0.
+Required=true
+DisableIfBlank=false
+DefaultValue=0
+
+[ResolutionY]
+Type=integer
+Minimum=0
+Maximum=65536
+Label=Resolution Y
+Category=Blender Settings
+Index=8
+Description=Overrides the render height. 0 keeps the resolution stored in the .blend file. Set both Resolution X and Resolution Y, or leave both at 0.
+Required=true
+DisableIfBlank=false
+DefaultValue=0
+
+[GpuDevice]
+Type=enum
+Values=Use Scene Setting;NONE;CUDA;OPTIX;HIP;ONEAPI;METAL
+Label=Cycles GPU Device
+Category=Blender Settings
+Index=9
+Description=Cycles compute device type. NONE forces CPU rendering; "Use Scene Setting" keeps the device stored in the .blend file. Only used by the Cycles engine. The Worker falls back through the other device types if the requested one is unavailable. The values are the identifiers Blender itself uses, so this is a drop-down.
+Required=true
+DisableIfBlank=false
+DefaultValue=Use Scene Setting
+
+; The three entries below are read-only: Deadline job properties can only offer a
+; drop-down for a fixed list of values, and scene / view layer / camera names only exist
+; inside the submitted .blend file. The submitter records the names that were available
+; when the job was submitted, so they can be read (and copied) here; the editable field is
+; the Scene / View Layer / Camera box above.
+[AvailableScenes]
+Type=Label
+Label=Scenes in the submitted file
+Category=Blender Settings
+Index=12
+Description=Read-only. The scene names that existed in the .blend file when this job was submitted. Copy one into the Scene box above.
+Required=false
+DisableIfBlank=true
+
+[AvailableViewLayers]
+Type=Label
+Label=View layers in the submitted file
+Category=Blender Settings
+Index=13
+Description=Read-only. The view layers of the submitted scene. Copy one into the View Layer box above.
+Required=false
+DisableIfBlank=true
+
+[AvailableCameras]
+Type=Label
+Label=Cameras in the submitted file
+Category=Blender Settings
+Index=14
+Description=Read-only. The renderable cameras of the submitted scene. Copy one into the Camera box above.
+Required=false
+DisableIfBlank=true
+
+[StrictErrorChecking]
+Type=boolean
+Label=Strict Error Checking
+Category=Blender Settings
+Index=10
+Description=When enabled, any render log line matching the [Blender_StrictErrorRegex] plugin configuration entry fails the task. Off by default.
+Required=true
+DisableIfBlank=false
+DefaultValue=False
+
+[MarkerOverride]
+Type=boolean
+Label=Override Camera Markers
+Category=Blender Settings
+Index=11
+Description=When a specific camera is selected, also rebind every timeline marker to it. Off by default, because the stock plugin never touched markers.
+Required=true
+DisableIfBlank=false
+DefaultValue=False

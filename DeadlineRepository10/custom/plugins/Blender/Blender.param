@@ -1,0 +1,95 @@
+; CUSTOM OVERRIDE of the stock Deadline Blender plugin configuration.
+;
+; Repository:  <DeadlineRepository>/custom/plugins/Blender/Blender.param
+; Factory file: <DeadlineRepository>/plugins/Blender/Blender.param  (left untouched)
+;
+; Section names are the keys used by the Deadline database, so the pre-existing
+; [Blender_RenderExecutable] and [SuppressOutput] names are kept on purpose: any
+; value an administrator already configured in the Monitor stays in effect.
+;
+; Configure these from the Monitor: Tools -> Configure Plugins -> Blender.
+;
+; The render executable paths contain placeholders that are substituted with the
+; version of the Blender that submitted the job, so no per-version section is needed
+; when Blender is installed in the conventional location:
+;
+;   {version}       major.minor of the submitting Blender    -> 4.2
+;   {version_full}  full version of the submitting Blender   -> 4.2.1
+;
+; These are placeholders of this plugin, not Deadline path mapping tokens
+; (${type:name}), which only apply to path mapping replacement paths.
+
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Blender Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Blender_RenderExecutable]
+Type=multilinemultifilename
+Label=Blender Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files\Blender Foundation\Blender {version}\blender.exe;C:\Program Files\Blender Foundation\Blender\blender.exe;C:\Program Files (x86)\Blender Foundation\Blender {version}\blender.exe;C:\Program Files (x86)\Blender Foundation\Blender\blender.exe;/Applications/Blender {version}/blender.app/Contents/MacOS/blender;/Applications/Blender/blender.app/Contents/MacOS/blender;/usr/local/Blender {version}/blender;/usr/local/blender-{version_full}-linux-x64/blender;/usr/local/Blender/blender
+Description=Render executable candidates for every Blender version, tried in order. Enter alternative paths on separate lines. {version} is replaced with the submitting Blender's major.minor (4.2) and {version_full} with its full version (4.2.1); entries that need a placeholder are skipped for jobs without version information, so the unversioned paths still work. Add paths here for your own install layout.
+
+; ---------------------------------------------------------------------------
+; Optional: pin one Blender version to a specific installation.
+;
+; Add a section named [Blender_<major.minor>_RenderExecutable] (for example
+; [Blender_4.2_RenderExecutable]); it takes precedence over the template above for
+; that version only. Uncomment the block below to use it, then fill in the path in
+; the Monitor under Tools -> Configure Plugins -> Blender.
+;
+; This is only needed for installations whose location does not follow the
+; placeholders above, for example a Linux tarball extracted somewhere custom.
+; ---------------------------------------------------------------------------
+;
+;[Blender_4.2_RenderExecutable]
+;Type=multilinemultifilename
+;Label=Blender 4.2 Executable (pinned)
+;Category=Render Executables
+;CategoryOrder=0
+;Index=1
+;Default=C:\Program Files\Blender Foundation\Blender 4.2\blender.exe
+;Description=Overrides the shared render executable template for Blender 4.2 only.
+
+[Blender_RenderScriptPath]
+Type=filename
+Label=Render Setup Script (optional override)
+Category=Render Executables
+CategoryOrder=0
+Index=11
+Default=
+Description=Optional. Full path to BlenderRenderScript.py. Leave blank to use <repository>/custom/plugins/Blender/BlenderRenderScript.py. Only set this when the script lives outside the repository.
+
+[Blender_StrictErrorRegex]
+Type=String
+Label=Strict Error Checking Pattern
+Category=Failure Detection
+CategoryOrder=1
+Index=0
+Default=.*Error:.*
+Description=Regular expression matched against the render log when a job enables Strict Error Checking. Leave blank to disable strict error checking entirely. Warnings are deliberately not matched, because Blender emits many harmless ones.
+
+[SuppressOutput]
+Type=boolean
+Label=Suppress Verbose Progress Output To Log
+Category=Output
+CategoryOrder=2
+Index=0
+Default=True
+Description=When enabled, this will prevent excessive progress logging to the Worker and task logs.
