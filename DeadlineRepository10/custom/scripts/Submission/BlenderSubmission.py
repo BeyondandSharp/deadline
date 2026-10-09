@@ -58,6 +58,200 @@ DraftRequested = True
 # Sentinel meaning "leave whatever the .blend file has".
 USE_SCENE_SETTING = "Use Scene Setting"
 
+########################################################################
+## Translations
+########################################################################
+# The window follows the language Blender itself is set to: the Blender side sends the locale it
+# runs with (see custom/submission/Blender/Main/SubmitBlenderToDeadline.py), and every label of
+# this dialog that belongs to us goes through Translate().
+#
+# Only the labels, captions, headers, menu entries and messages are translated; tooltips and the
+# values of the settings (including "Use Scene Setting") stay as they are, because they are data
+# that also shows up in Job Properties and in the job files.
+#
+# Adding a language is adding a dict: the keys are the English strings below. The environment
+# variable DLB_LANGUAGE forces one for a test run, e.g. DLB_LANGUAGE=zh_HANS.
+LANGUAGE_ENVIRONMENT_VARIABLE = "DLB_LANGUAGE"
+
+TRANSLATIONS_ZH = {
+    # The tabs and pages the script builds
+    "Job Description": u"作业说明",
+    "Job Name": u"作业名称",
+    "Comment": u"备注",
+    "Department": u"部门",
+    "Job Options": u"作业选项",
+    "Pool": u"池",
+    "Secondary Pool": u"备用池",
+    "Group": u"组",
+    "Priority": u"优先级",
+    "Task Timeout": u"任务超时",
+    "Enable Auto Task Timeout": u"启用自动任务超时",
+    "Concurrent Tasks": u"并发任务数",
+    "Limit Tasks To Worker's Task Limit": u"限制为工作机的任务上限",
+    "Machine Limit": u"机器数上限",
+    "Machine List Is A Deny List": u"机器列表为黑名单",
+    "Machine List": u"机器列表",
+    "Limits": u"限制组",
+    "Dependencies": u"依赖作业",
+    "On Job Complete": u"作业完成后",
+    "Submit Job As Suspended": u"提交为暂停状态",
+
+    # The Blender Options page
+    "Blender Options": u"Blender 选项",
+    "Blender File": u"Blender 文件",
+    "Submit Blender Scene File With The Job": u"随作业提交 Blender 场景文件",
+    "Threads": u"线程数",
+    "Build To Force": u"强制位数",
+    "Render One At A Time": u"逐个渲染",
+    "Render combinations": u"渲染组合",
+    "Options per combination": u"逐组合选项",
+    "Scene / layer / camera lists": u"场景 / 渲染层 / 相机列表",
+    "Read From File": u"从文件读取",
+    "Not read yet - press 'Read From File' after choosing the .blend above.":
+        u"尚未读取——选好上方的 .blend 后点击“从文件读取”。",
+    "Blender Version": u"Blender 版本",
+    "Submit": u"提交",
+    "Close": u"关闭",
+
+    # The tree
+    "Scene / View Layer / Camera": u"场景 / 渲染层 / 相机",
+    "Select All": u"全选",
+    "Select None": u"全不选",
+    "Invert Selection": u"反选",
+    "Select The Whole Tree": u"全选整棵树",
+    "Clear The Whole Tree": u"清空整棵树",
+    "%d of %d combinations ticked.": u"已勾选 %d / %d 个组合。",
+    "No scene / view layer / camera names are known yet - press 'Read From File' "
+    "above (or submit from Blender).":
+        u"还不知道任何场景 / 渲染层 / 相机名称——请点击上方“从文件读取”（或从 Blender 提交）。",
+    "Only %d of the %d scenes could be listed: the Blender-side proxy that opened this "
+    "dialog did not send the other scenes. Update custom/submission/Blender/Main/"
+    "SubmitBlenderToDeadline.py and make sure the repository cache has fetched it "
+    "(deadlinecommand -ExecuteScript custom/tests/report_paths.py shows this).":
+        u"只列出了 %d / %d 个场景：打开此对话框的 Blender 端代理没有把其他场景发过来。"
+        u"请更新 custom/submission/Blender/Main/SubmitBlenderToDeadline.py，"
+        u"并确认仓库缓存已取到它（deadlinecommand -ExecuteScript custom/tests/report_paths.py 可查看）。",
+
+    # The options table
+    "Combination": u"组合",
+    "Output File": u"输出文件",
+    "Frame List": u"帧列表",
+    "Frames Per Task": u"每任务帧数",
+    "Render Engine": u"渲染引擎",
+    "Image Format": u"图像格式",
+    "Cycles GPU": u"Cycles GPU",
+    "Res X": u"横向分辨率",
+    "Res Y": u"纵向分辨率",
+    "Strict Error": u"严格错误检查",
+    "Override Markers": u"覆盖相机标记",
+    "Reset Selected Cells To Defaults": u"重置选中的单元格为默认值",
+    "Reset Selected Rows To Defaults": u"重置选中的行为默认值",
+    "Reset All Rows To Defaults": u"重置所有行为默认值",
+    "Copy First Row To All": u"首行复制到所有行",
+    "Output File presets": u"输出文件预设",
+    "No default output path was submitted - type one": u"没有默认输出路径，请手动填写",
+    "The right-click menu could not be built: %s": u"无法构建右键菜单：%s",
+    "Cut": u"剪切",
+    "Copy": u"复制",
+    "Paste": u"粘贴",
+    "Click here to select this cell. The list opens when the value itself is "
+    "clicked.": u"点这里只选中该单元格；点右侧的值才会展开列表。",
+    "Where this job writes its frames. Right-click for presets built from "
+    "the scene, view layer and camera of the row.":
+        u"该作业的输出位置。右键可用基于本行场景 / 渲染层 / 相机的预设。",
+    "Choose the output file for this combination.": u"为该组合选择输出文件。",
+    "The frames this job renders, e.g. 1-100 or 1-10,20-30.": u"该作业渲染的帧，例如 1-100 或 1-10,20-30。",
+    "Scene %s": u"场景 %s",
+
+    # The confirmation and the messages
+    "Confirm Submission": u"确认提交",
+    "Submits %d job%s": u"将提交 %d 个作业%s",
+    "from the .blend file": u"取自 .blend 文件",
+    "Render One At A Time: every job waits for the one before it.":
+        u"逐个渲染：每个作业都等待前一个完成。",
+    "'Submit Blender Scene File With The Job' is enabled, so each of the %d jobs "
+    "carries its own copy of the .blend file.":
+        u"已启用“随作业提交 Blender 场景文件”，%d 个作业各带一份 .blend 文件副本。",
+    "The Blender scene must be saved before it can be submitted to Deadline.":
+        u"提交到 Deadline 前需要先保存 Blender 场景。",
+    "The Blender file %s does not exist": u"Blender 文件 %s 不存在",
+    "The Blender file %s is local. Are you sure you want to continue?":
+        u"Blender 文件 %s 在本地。确定要继续吗？",
+    "The output file %s is local. Are you sure you want to continue?":
+        u"输出文件 %s 在本地。确定要继续吗？",
+    "Frame range %s is not valid": u"帧范围 %s 无效",
+    "Nothing is ticked in the combination tree, so there is nothing to submit.\n\n"
+    "Tick at least one scene / view layer / camera combination (right-click an item for "
+    "Select All).":
+        u"组合树里没有任何勾选，因此没有可提交的内容。\n\n"
+        u"请至少勾选一个场景 / 渲染层 / 相机组合（右键菜单可“全选”）。",
+    "Rendering %d jobs needs an output file: without one every job would write to the path "
+    "stored in the .blend file and they would overwrite each other.\n\n"
+    "Fill in the 'Output File' column of the table, then submit again.":
+        u"渲染 %d 个作业需要输出文件：没有它每个作业都会写到 .blend 里存的那条路径，"
+        u"互相覆盖。\n\n请在表格的“输出文件”列填写后重新提交。",
+    "These rows write to the same output file:\n\n  %s\n\n"
+    "Give them different file names. Right-click an output path for presets that use the "
+    "view layer and camera of the row.":
+        u"以下行写同一个输出文件：\n\n  %s\n\n请给它们不同的文件名。"
+        u"右键输出路径可用基于该行渲染层与相机的预设。",
+    "The combination '%s' has only one of Res X and Res Y set.\n\n"
+    "Set both, or leave both at 0 to use the resolution stored in the .blend file.":
+        u"组合“%s”只设置了横向或纵向分辨率之一。\n\n请两个都设置，或都留 0 以使用 .blend 文件里的分辨率。",
+    "The frame list of the combination '%s' (%s) is not valid.\n\n"
+    "Use a range or a list, for example 1-100 or 1-10,20-30.":
+        u"组合“%s”的帧列表（%s）无效。\n\n请使用范围或列表，例如 1-100 或 1-10,20-30。",
+    "The frames per task of the combination '%s' has to be at least 1.":
+        u"组合“%s”的每任务帧数至少为 1。",
+    "Could not write the job files:\n\n%s": u"无法写入作业文件：\n\n%s",
+}
+
+TRANSLATIONS = {
+    "zh_HANS": TRANSLATIONS_ZH,
+    # Blender has no separate table here yet; both Chinese locales use the one above.
+    "zh_HANT": TRANSLATIONS_ZH,
+}
+
+# Language the window is drawn in: what Blender sent, or the environment override.
+def CurrentLanguage():
+    # type: () -> str
+    override = str( os.environ.get( LANGUAGE_ENVIRONMENT_VARIABLE, "" ) or "" ).strip()
+    if override != "":
+        return override
+
+    return str( submitContext.get( "language", "" ) or "" ).strip()
+
+
+def TranslationTable():
+    # type: () -> dict
+    language = CurrentLanguage()
+    if language == "":
+        return {}
+
+    table = TRANSLATIONS.get( language )
+    if table is not None:
+        return table
+
+    # zh_HANS / zh_HANT and anything else with a region: fall back to the language itself.
+    return TRANSLATIONS.get( language.split( "_" )[ 0 ], {} )
+
+
+def Translate( text ):
+    # type: (str) -> str
+    """The text in the artist's Blender language, or unchanged when there is no translation."""
+    table = TranslationTable()
+    if not table:
+        return text
+
+    return table.get( text, text )
+
+
+def TranslateFormat( text, *args ):
+    # type: (*object) -> str
+    """Translate a template, then fill it in - the translation may reorder the values."""
+    return Translate( text ) % args
+
+
 ENGINE_ITEMS = ( USE_SCENE_SETTING, "cycles", "eevee", "workbench" )
 
 # Image formats offered by the dialog. Anything not listed can still be set from the
@@ -471,7 +665,7 @@ def CreateCombinationTree( parentLayout, row ):
 
     tree = QtWidgets.QTreeWidget()
     tree.setColumnCount( 1 )
-    tree.setHeaderLabels( [ "Scene / View Layer / Camera" ] )
+    tree.setHeaderLabels( [ Translate( "Scene / View Layer / Camera" ) ] )
     tree.setUniformRowHeights( True )
     tree.setMinimumHeight( 180 )
     tree.setContextMenuPolicy( QtCore.Qt.CustomContextMenu )
@@ -759,7 +953,7 @@ def CreateCombinationTable( parentLayout, row ):
         return None
 
     table = QtWidgets.QTableWidget( 0, len( TABLE_HEADERS ) )
-    table.setHorizontalHeaderLabels( list( TABLE_HEADERS ) )
+    table.setHorizontalHeaderLabels( [ Translate( header ) for header in TABLE_HEADERS ] )
     table.verticalHeader().setVisible( False )
     table.setMinimumHeight( 170 )
     table.setAlternatingRowColors( True )
@@ -1179,8 +1373,8 @@ def MakeSelectionStrip( width=18 ):
     strip = QtWidgets.QWidget()
     strip.setFixedWidth( width )
     strip.setCursor( QtCore.Qt.PointingHandCursor )
-    strip.setToolTip( "Click here to select this cell. The list opens when the value itself is "
-                      "clicked." )
+    strip.setToolTip( Translate( "Click here to select this cell. The list opens when the value itself is "
+                                  "clicked." ) )
     selectOnlyWidgets.add( strip )
     return strip
 
@@ -1349,7 +1543,7 @@ def AddCombinationRow( scene, viewLayer, camera, settings ):
     # Scene / view layer / camera, so a row can be told apart without reading a tooltip.
     label = QtWidgets.QTableWidgetItem( "%s / %s / %s" % ( scene, viewLayer, camera ) )
     label.setFlags( QtCore.Qt.ItemIsEnabled )
-    label.setToolTip( "Scene %s, view layer %s, camera %s - the job renders exactly that."
+    label.setToolTip( Translate( "Scene %s, view layer %s, camera %s - the job renders exactly that." )
                       % ( scene, viewLayer, camera ) )
     combinationTable.setItem( row, 0, label )
 
@@ -1358,13 +1552,13 @@ def AddCombinationRow( scene, viewLayer, camera, settings ):
     # button out of the cell instead of shrinking the text field.
     output.setMinimumWidth( 0 )
     output.setSizePolicy( QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed )
-    output.setToolTip( "Where this job writes its frames. Right-click for presets built from "
-                       "the scene, view layer and camera of the row." )
+    output.setToolTip( Translate( "Where this job writes its frames. Right-click for presets built from "
+                               "the scene, view layer and camera of the row." ) )
     # The right-click menu of this cell is handled by the editor event filter, together with
     # the other cells, so that cut / copy / paste and the presets stay in one place.
 
     browse = QtWidgets.QPushButton( "..." )
-    browse.setToolTip( "Choose the output file for this combination." )
+    browse.setToolTip( Translate( "Choose the output file for this combination." ) )
     browse.setFixedWidth( 28 )
     browse.setSizePolicy( QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed )
     browse.clicked.connect( lambda checked=False, widget=output: BrowseForOutput( widget ) )
@@ -1380,7 +1574,7 @@ def AddCombinationRow( scene, viewLayer, camera, settings ):
 
     frames = QtWidgets.QLineEdit( str( settings.get( "frames", "" ) ) )
     frames.setMinimumWidth( 60 )
-    frames.setToolTip( "The frames this job renders, e.g. 1-100 or 1-10,20-30." )
+    frames.setToolTip( Translate( "The frames this job renders, e.g. 1-100 or 1-10,20-30." ) )
     combinationTable.setCellWidget( row, 2, frames )
 
     chunkSize = QtWidgets.QSpinBox()
@@ -1678,11 +1872,11 @@ def BuildCombinationTableMenu( row=-1, column=-1, widget=None ):
     def Connect( action, handler ):
         action.triggered.connect( lambda checked=False, handler=handler: handler() )
 
-    Connect( menu.addAction( "Reset Selected Cells To Defaults" ), ResetSelectedCellsToDefaults )
-    Connect( menu.addAction( "Reset Selected Rows To Defaults" ), ResetSelectedRowsToDefaults )
-    Connect( menu.addAction( "Reset All Rows To Defaults" ),
+    Connect( menu.addAction( Translate( "Reset Selected Cells To Defaults" ) ), ResetSelectedCellsToDefaults )
+    Connect( menu.addAction( Translate( "Reset Selected Rows To Defaults" ) ), ResetSelectedRowsToDefaults )
+    Connect( menu.addAction( Translate( "Reset All Rows To Defaults" ) ),
              lambda: ResetRowsToDefaults( list( range( len( combinationRows ) ) ) ) )
-    Connect( menu.addAction( "Copy First Row To All" ), CopyFirstRowToAll )
+    Connect( menu.addAction( Translate( "Copy First Row To All" ) ), CopyFirstRowToAll )
 
     if widget is not None:
         # This is an output path cell: offer the presets of its own combination.
@@ -1695,20 +1889,20 @@ def BuildCombinationTableMenu( row=-1, column=-1, widget=None ):
             rows = list( range( len( combinationRows ) ) )
 
         menu.addSeparator()
-        submenu = menu.addMenu( "Output File presets" )
+        submenu = menu.addMenu( Translate( "Output File presets" ) )
         if presets:
             for index, ( label, path ) in enumerate( presets ):
                 Connect( submenu.addAction( label ), lambda index=index: ApplyOutputPreset( rows, index ) )
         else:
-            action = submenu.addAction( "No default output path was submitted - type one" )
+            action = submenu.addAction( Translate( "No default output path was submitted - type one" ) )
             action.setEnabled( False )
 
         # Cut / copy / paste, built here on purpose: taking the actions of
         # widget.createStandardContextMenu() crashes the dialog, because that temporary menu is
         # deleted right away and takes its actions with it.
         menu.addSeparator()
-        for label, method in ( ( "Cut", "cut" ), ( "Copy", "copy" ), ( "Paste", "paste" ),
-                               ( "Select All", "selectAll" ) ):
+        for label, method in ( ( Translate( "Cut" ), "cut" ), ( Translate( "Copy" ), "copy" ), ( Translate( "Paste" ), "paste" ),
+                               ( Translate( "Select All" ), "selectAll" ) ):
             action = menu.addAction( label )
             action.triggered.connect( lambda checked=False, method=method, widget=widget:
                                       getattr( widget, method )() )
@@ -1726,7 +1920,7 @@ def BuildCombinationTableMenuSafely( row=-1, column=-1, widget=None ):
         try:
             QtCore, QtGui, QtWidgets = QtModules()
             menu = QtWidgets.QMenu( widget if widget is not None else combinationTable )
-            action = menu.addAction( "The right-click menu could not be built: %s" % error )
+            action = menu.addAction( Translate( "The right-click menu could not be built: %s" ) % error )
             action.setEnabled( False )
             return menu
         except Exception:
@@ -1787,11 +1981,11 @@ def CombinationTreeMenuEntries( item ):
     target = item if item is not None else root
 
     return [
-        ( "Select All", lambda: SetBranchState( target, checked ) ),
-        ( "Select None", lambda: SetBranchState( target, unchecked ) ),
-        ( "Invert Selection", lambda: InvertBranch( target ) ),
-        ( "Select The Whole Tree", lambda: SetBranchState( root, checked ) ),
-        ( "Clear The Whole Tree", lambda: SetBranchState( root, unchecked ) ),
+        ( Translate( "Select All" ), lambda: SetBranchState( target, checked ) ),
+        ( Translate( "Select None" ), lambda: SetBranchState( target, unchecked ) ),
+        ( Translate( "Invert Selection" ), lambda: InvertBranch( target ) ),
+        ( Translate( "Select The Whole Tree" ), lambda: SetBranchState( root, checked ) ),
+        ( Translate( "Clear The Whole Tree" ), lambda: SetBranchState( root, unchecked ) ),
     ]
 
 
@@ -1848,15 +2042,15 @@ def TreeHintText():
 
     scenes = SceneList()
     if not scenes:
-        return ( "No scene / view layer / camera names are known yet - press 'Read From File' "
-                 "above (or submit from Blender)." )
+        return Translate( "No scene / view layer / camera names are known yet - press 'Read From File' "
+                          "above (or submit from Blender)." )
 
     total = 0
     for scene in scenes:
         layers, cameras = SceneNames( scene )
         total += len( layers ) * len( cameras )
 
-    return "%d of %d combinations ticked." % ( len( CheckedPaths() ), total )
+    return TranslateFormat( "%d of %d combinations ticked.", len( CheckedPaths() ), total )
 
 
 def LibDirectory():
@@ -1942,81 +2136,81 @@ def __main__( *args ):
 
     scriptDialog.AddTabPage("Job Options")
     scriptDialog.AddGrid()
-    scriptDialog.AddControlToGrid( "Separator1", "SeparatorControl", "Job Description", 0, 0, colSpan=2 )
+    scriptDialog.AddControlToGrid( "Separator1", "SeparatorControl", Translate( "Job Description" ), 0, 0, colSpan=2 )
 
-    scriptDialog.AddControlToGrid( "NameLabel", "LabelControl", "Job Name", 1, 0, "The name of your job. This is optional, and if left blank, it will default to 'Untitled'.", False )
+    scriptDialog.AddControlToGrid( "NameLabel", "LabelControl", Translate( "Job Name" ), 1, 0, "The name of your job. This is optional, and if left blank, it will default to 'Untitled'.", False )
     scriptDialog.AddControlToGrid( "NameBox", "TextControl", "Untitled", 1, 1 )
 
-    scriptDialog.AddControlToGrid( "CommentLabel", "LabelControl", "Comment", 2, 0, "A simple description of your job. This is optional and can be left blank.", False )
+    scriptDialog.AddControlToGrid( "CommentLabel", "LabelControl", Translate( "Comment" ), 2, 0, "A simple description of your job. This is optional and can be left blank.", False )
     scriptDialog.AddControlToGrid( "CommentBox", "TextControl", "", 2, 1 )
 
-    scriptDialog.AddControlToGrid( "DepartmentLabel", "LabelControl", "Department", 3, 0, "The department you belong to. This is optional and can be left blank.", False )
+    scriptDialog.AddControlToGrid( "DepartmentLabel", "LabelControl", Translate( "Department" ), 3, 0, "The department you belong to. This is optional and can be left blank.", False )
     scriptDialog.AddControlToGrid( "DepartmentBox", "TextControl", "", 3, 1 )
     scriptDialog.EndGrid()
 
     scriptDialog.AddGrid()
-    scriptDialog.AddControlToGrid( "Separator2", "SeparatorControl", "Job Options", 0, 0, colSpan=3 )
+    scriptDialog.AddControlToGrid( "Separator2", "SeparatorControl", Translate( "Job Options" ), 0, 0, colSpan=3 )
 
-    scriptDialog.AddControlToGrid( "PoolLabel", "LabelControl", "Pool", 1, 0, "The pool that your job will be submitted to.", False )
+    scriptDialog.AddControlToGrid( "PoolLabel", "LabelControl", Translate( "Pool" ), 1, 0, "The pool that your job will be submitted to.", False )
     scriptDialog.AddControlToGrid( "PoolBox", "PoolComboControl", "none", 1, 1 )
 
-    scriptDialog.AddControlToGrid( "SecondaryPoolLabel", "LabelControl", "Secondary Pool", 2, 0, "The secondary pool lets you specify a Pool to use if the primary Pool does not have any available Workers.", False )
+    scriptDialog.AddControlToGrid( "SecondaryPoolLabel", "LabelControl", Translate( "Secondary Pool" ), 2, 0, "The secondary pool lets you specify a Pool to use if the primary Pool does not have any available Workers.", False )
     scriptDialog.AddControlToGrid( "SecondaryPoolBox", "SecondaryPoolComboControl", "", 2, 1 )
 
-    scriptDialog.AddControlToGrid( "GroupLabel", "LabelControl", "Group", 3, 0, "The group that your job will be submitted to.", False )
+    scriptDialog.AddControlToGrid( "GroupLabel", "LabelControl", Translate( "Group" ), 3, 0, "The group that your job will be submitted to.", False )
     scriptDialog.AddControlToGrid( "GroupBox", "GroupComboControl", "none", 3, 1 )
 
-    scriptDialog.AddControlToGrid( "PriorityLabel", "LabelControl", "Priority", 4, 0, "A job can have a numeric priority ranging from 0 to 100, where 0 is the lowest priority and 100 is the highest priority.", False )
+    scriptDialog.AddControlToGrid( "PriorityLabel", "LabelControl", Translate( "Priority" ), 4, 0, "A job can have a numeric priority ranging from 0 to 100, where 0 is the lowest priority and 100 is the highest priority.", False )
     scriptDialog.AddRangeControlToGrid( "PriorityBox", "RangeControl", RepositoryUtils.GetMaximumPriority() // 2, 0, RepositoryUtils.GetMaximumPriority(), 0, 1, 4, 1 )
 
-    scriptDialog.AddControlToGrid( "TaskTimeoutLabel", "LabelControl", "Task Timeout", 5, 0, "The number of minutes a Worker has to render a task for this job before it requeues it. Specify 0 for no limit.", False )
+    scriptDialog.AddControlToGrid( "TaskTimeoutLabel", "LabelControl", Translate( "Task Timeout" ), 5, 0, "The number of minutes a Worker has to render a task for this job before it requeues it. Specify 0 for no limit.", False )
     scriptDialog.AddRangeControlToGrid( "TaskTimeoutBox", "RangeControl", 0, 0, 1000000, 0, 1, 5, 1 )
-    scriptDialog.AddSelectionControlToGrid( "AutoTimeoutBox", "CheckBoxControl", False, "Enable Auto Task Timeout", 5, 2, "If the Auto Task Timeout is properly configured in the Repository Options, then enabling this will allow a task timeout to be automatically calculated based on the render times of previous frames for the job. " )
+    scriptDialog.AddSelectionControlToGrid( "AutoTimeoutBox", "CheckBoxControl", False, Translate( "Enable Auto Task Timeout" ), 5, 2, "If the Auto Task Timeout is properly configured in the Repository Options, then enabling this will allow a task timeout to be automatically calculated based on the render times of previous frames for the job. " )
 
-    scriptDialog.AddControlToGrid( "ConcurrentTasksLabel", "LabelControl", "Concurrent Tasks", 6, 0, "The number of tasks that can render concurrently on a single Worker. This is useful if the rendering application only uses one thread to render and your Workers have multiple CPUs.", False )
+    scriptDialog.AddControlToGrid( "ConcurrentTasksLabel", "LabelControl", Translate( "Concurrent Tasks" ), 6, 0, "The number of tasks that can render concurrently on a single Worker. This is useful if the rendering application only uses one thread to render and your Workers have multiple CPUs.", False )
     scriptDialog.AddRangeControlToGrid( "ConcurrentTasksBox", "RangeControl", 1, 1, 16, 0, 1, 6, 1 )
-    scriptDialog.AddSelectionControlToGrid( "LimitConcurrentTasksBox", "CheckBoxControl", True, "Limit Tasks To Worker's Task Limit", 6, 2, "If you limit the tasks to a Worker's task limit, then by default, the Worker won't dequeue more tasks then it has CPUs. This task limit can be overridden for individual Workers by an administrator." )
+    scriptDialog.AddSelectionControlToGrid( "LimitConcurrentTasksBox", "CheckBoxControl", True, Translate( "Limit Tasks To Worker's Task Limit" ), 6, 2, "If you limit the tasks to a Worker's task limit, then by default, the Worker won't dequeue more tasks then it has CPUs. This task limit can be overridden for individual Workers by an administrator." )
 
-    scriptDialog.AddControlToGrid( "MachineLimitLabel", "LabelControl", "Machine Limit", 7, 0, "Use the Machine Limit to specify the maximum number of machines that can render your job at one time. Specify 0 for no limit.", False )
+    scriptDialog.AddControlToGrid( "MachineLimitLabel", "LabelControl", Translate( "Machine Limit" ), 7, 0, "Use the Machine Limit to specify the maximum number of machines that can render your job at one time. Specify 0 for no limit.", False )
     scriptDialog.AddRangeControlToGrid( "MachineLimitBox", "RangeControl", 0, 0, 1000000, 0, 1, 7, 1 )
-    scriptDialog.AddSelectionControlToGrid( "IsBlacklistBox", "CheckBoxControl", False, "Machine List Is A Deny List", 7, 2, "You can force the job to render on specific machines by using an allow list, or you can avoid specific machines by using a deny list." )
+    scriptDialog.AddSelectionControlToGrid( "IsBlacklistBox", "CheckBoxControl", False, Translate( "Machine List Is A Deny List" ), 7, 2, "You can force the job to render on specific machines by using an allow list, or you can avoid specific machines by using a deny list." )
 
-    scriptDialog.AddControlToGrid( "MachineListLabel", "LabelControl", "Machine List", 8, 0, "The list of machines on the deny list or allow list.", False )
+    scriptDialog.AddControlToGrid( "MachineListLabel", "LabelControl", Translate( "Machine List" ), 8, 0, "The list of machines on the deny list or allow list.", False )
     scriptDialog.AddControlToGrid( "MachineListBox", "MachineListControl", "", 8, 1, colSpan=2 )
 
-    scriptDialog.AddControlToGrid( "LimitGroupLabel", "LabelControl", "Limits", 9, 0, "The Limits that your job requires.", False )
+    scriptDialog.AddControlToGrid( "LimitGroupLabel", "LabelControl", Translate( "Limits" ), 9, 0, "The Limits that your job requires.", False )
     scriptDialog.AddControlToGrid( "LimitGroupBox", "LimitGroupControl", "", 9, 1, colSpan=2 )
 
-    scriptDialog.AddControlToGrid( "DependencyLabel", "LabelControl", "Dependencies", 10, 0, "Specify existing jobs that this job will be dependent on. This job will not start until the specified dependencies finish rendering.", False )
+    scriptDialog.AddControlToGrid( "DependencyLabel", "LabelControl", Translate( "Dependencies" ), 10, 0, "Specify existing jobs that this job will be dependent on. This job will not start until the specified dependencies finish rendering.", False )
     scriptDialog.AddControlToGrid( "DependencyBox", "DependencyControl", "", 10, 1, colSpan=2 )
 
-    scriptDialog.AddControlToGrid( "OnJobCompleteLabel", "LabelControl", "On Job Complete", 11, 0, "If desired, you can automatically archive or delete the job when it completes.", False )
+    scriptDialog.AddControlToGrid( "OnJobCompleteLabel", "LabelControl", Translate( "On Job Complete" ), 11, 0, "If desired, you can automatically archive or delete the job when it completes.", False )
     scriptDialog.AddControlToGrid( "OnJobCompleteBox", "OnJobCompleteControl", "Nothing", 11, 1 )
-    scriptDialog.AddSelectionControlToGrid( "SubmitSuspendedBox", "CheckBoxControl", False, "Submit Job As Suspended", 11, 2, "If enabled, the job will submit in the suspended state. This is useful if you don't want the job to start rendering right away. Just resume it from the Monitor when you want it to render." )
+    scriptDialog.AddSelectionControlToGrid( "SubmitSuspendedBox", "CheckBoxControl", False, Translate( "Submit Job As Suspended" ), 11, 2, "If enabled, the job will submit in the suspended state. This is useful if you don't want the job to start rendering right away. Just resume it from the Monitor when you want it to render." )
     scriptDialog.EndGrid()
 
     blenderOptionsGrid = scriptDialog.AddGrid()
-    scriptDialog.AddControlToGrid( "Separator3", "SeparatorControl", "Blender Options", 0, 0, colSpan=3 )
+    scriptDialog.AddControlToGrid( "Separator3", "SeparatorControl", Translate( "Blender Options" ), 0, 0, colSpan=3 )
 
-    scriptDialog.AddControlToGrid( "SceneLabel", "LabelControl", "Blender File", 1, 0, "The scene file to be rendered.", False )
+    scriptDialog.AddControlToGrid( "SceneLabel", "LabelControl", Translate( "Blender File" ), 1, 0, "The scene file to be rendered.", False )
     scriptDialog.AddSelectionControlToGrid( "SceneBox", "FileBrowserControl", "", "Blender Files (*.blend);;All Files (*)", 1, 1, colSpan=2 )
 
-    scriptDialog.AddSelectionControlToGrid("SubmitSceneBox","CheckBoxControl",False,"Submit Blender Scene File With The Job", 2, 1, colSpan=2, tooltip="If this option is enabled, the scene file will be submitted with the job, and then copied locally to the Worker machine during rendering.")
+    scriptDialog.AddSelectionControlToGrid("SubmitSceneBox","CheckBoxControl",False,Translate( "Submit Blender Scene File With The Job" ), 2, 1, colSpan=2, tooltip="If this option is enabled, the scene file will be submitted with the job, and then copied locally to the Worker machine during rendering.")
 
-    scriptDialog.AddControlToGrid( "ThreadsLabel", "LabelControl", "Threads", 3, 0, "The number of threads to use for rendering.", False )
+    scriptDialog.AddControlToGrid( "ThreadsLabel", "LabelControl", Translate( "Threads" ), 3, 0, "The number of threads to use for rendering.", False )
     scriptDialog.AddRangeControlToGrid( "ThreadsBox", "RangeControl", 0, 0, 256, 0, 1, 3, 1, expand=False )
 
-    scriptDialog.AddControlToGrid( "BuildLabel", "LabelControl", "Build To Force", 4, 0, "You can force 32 or 64 bit rendering with this option.", False )
+    scriptDialog.AddControlToGrid( "BuildLabel", "LabelControl", Translate( "Build To Force" ), 4, 0, "You can force 32 or 64 bit rendering with this option.", False )
     scriptDialog.AddComboControlToGrid( "BuildBox", "ComboControl", "None", ("None","32bit","64bit"), 4, 1, expand=False )
 
     ####################################################################
     ## The render tree and the options of each ticked combination
     ####################################################################
 
-    chainJobsBox = scriptDialog.AddSelectionControlToGrid( "ChainJobsBox", "CheckBoxControl", False, "Render One At A Time", 5, 0, colSpan=3, tooltip="Make each submitted job dependent on the previous one, so the combinations are rendered one after the other instead of in parallel. Only used when more than one job is submitted." )
+    chainJobsBox = scriptDialog.AddSelectionControlToGrid( "ChainJobsBox", "CheckBoxControl", False, Translate( "Render One At A Time" ), 5, 0, colSpan=3, tooltip="Make each submitted job dependent on the previous one, so the combinations are rendered one after the other instead of in parallel. Only used when more than one job is submitted." )
     chainJobsBox.ValueModified.connect( CombinationSelectionChanged )
 
-    scriptDialog.AddControlToGrid( "TreeHintLabel", "LabelControl", "Render combinations", 6, 0,
+    scriptDialog.AddControlToGrid( "TreeHintLabel", "LabelControl", Translate( "Render combinations" ), 6, 0,
         "Tick the view layer / camera combinations to render; every ticked item becomes one job. "
         "Ticking a view layer ticks all of its cameras. Right-click an item for Select All, "
         "Select None and Invert Selection.", False )
@@ -2025,7 +2219,7 @@ def __main__( *args ):
     CreateCombinationTree( blenderOptionsGrid, 7 )
     RefreshCombinationTree()
 
-    scriptDialog.AddControlToGrid( "OptionsLabel", "LabelControl", "Options per combination", 8, 0,
+    scriptDialog.AddControlToGrid( "OptionsLabel", "LabelControl", Translate( "Options per combination" ), 8, 0,
         "Every ticked combination gets its own row: output file, frame list, frames per task, engine, "
         "format, GPU, resolution and the two switches. Cells can be selected one by one or with "
         "Ctrl / Shift, and changing one cell of a column changes every selected cell of that "
@@ -2045,16 +2239,16 @@ def __main__( *args ):
     if not ContextList( "scenes" ):
         # Opened from the Monitor or the Launcher's Submit menu: there is no Blender to ask,
         # so offer to read the names out of the .blend the user picks above.
-        scriptDialog.AddControlToGrid( "ReadNamesLabel", "LabelControl", "Scene / layer / camera lists", footerRow, 0,
+        scriptDialog.AddControlToGrid( "ReadNamesLabel", "LabelControl", Translate( "Scene / layer / camera lists" ), footerRow, 0,
             "Reads the scene, view layer and camera names out of the selected .blend file. This does not "
             "load the file: only its block index and structure catalog are read.", False )
-        readNamesButton = scriptDialog.AddControlToGrid( "ReadNamesButton", "ButtonControl", "Read From File", footerRow, 1, expand=False )
+        readNamesButton = scriptDialog.AddControlToGrid( "ReadNamesButton", "ButtonControl", Translate( "Read From File" ), footerRow, 1, expand=False )
         readNamesButton.ValueModified.connect( ReadNamesFromFile )
         footerRow += 1
 
         scriptDialog.AddControlToGrid( "NamesStatusLabel", "LabelControl", "", footerRow, 0, "", False )
         scriptDialog.AddControlToGrid( "NamesStatusBox", "LabelControl",
-            "Not read yet - press 'Read From File' after choosing the .blend above.", footerRow, 1,
+            Translate( "Not read yet - press 'Read From File' after choosing the .blend above." ), footerRow, 1,
             "The names come from the .blend file. If it cannot be read (for example a "
             "ZStandard-compressed file with no zstd module and no Blender executable), set the "
             "values by hand in Job Properties -> Blender Settings, or use the monitor job script "
@@ -2062,7 +2256,7 @@ def __main__( *args ):
         footerRow += 1
 
     # The version is a footnote: it only says which Blender submitted this job.
-    scriptDialog.AddControlToGrid( "VersionKeyLabel", "LabelControl", "Blender Version", footerRow, 0, "The Blender version that submitted this job. It selects the matching render executable on the Worker.", False )
+    scriptDialog.AddControlToGrid( "VersionKeyLabel", "LabelControl", Translate( "Blender Version" ), footerRow, 0, "The Blender version that submitted this job. It selects the matching render executable on the Worker.", False )
     scriptDialog.AddControlToGrid( "VersionBox", "LabelControl", str( submitContext.get( "version", "" ) ), footerRow, 1, "The Blender version that submitted this job. It selects the matching render executable on the Worker.", False )
 
     scriptDialog.EndGrid()
@@ -2077,10 +2271,10 @@ def __main__( *args ):
     scriptDialog.AddGrid()
     scriptDialog.AddHorizontalSpacerToGrid( "HSpacer1", 0, 0 )
 
-    submitButton = scriptDialog.AddControlToGrid( "SubmitButton", "ButtonControl", "Submit", 0, 1, expand=False )
+    submitButton = scriptDialog.AddControlToGrid( "SubmitButton", "ButtonControl", Translate( "Submit" ), 0, 1, expand=False )
     submitButton.ValueModified.connect(SubmitButtonPressed)
 
-    closeButton = scriptDialog.AddControlToGrid( "CloseButton", "ButtonControl", "Close", 0, 2, expand=False )
+    closeButton = scriptDialog.AddControlToGrid( "CloseButton", "ButtonControl", Translate( "Close" ), 0, 2, expand=False )
     # Make sure all the project management connections are closed properly
     closeButton.ValueModified.connect(integration_dialog.CloseProjectManagementConnections)
     closeButton.ValueModified.connect(scriptDialog.closeEvent)
@@ -2099,7 +2293,7 @@ def __main__( *args ):
         appSubmission = True
 
         if args[0] == "":
-            scriptDialog.ShowMessageBox( "The Blender scene must be saved before it can be submitted to Deadline.", "Error" )
+            scriptDialog.ShowMessageBox( Translate( "The Blender scene must be saved before it can be submitted to Deadline." ), "Error" )
             return
 
         scriptDialog.SetValue( "SceneBox", args[0] )
@@ -2138,7 +2332,7 @@ def ReadNamesFromFile():
 
     sceneFile = str( scriptDialog.GetValue( "SceneBox" ) )
     if sceneFile == "" or not File.Exists( sceneFile ):
-        scriptDialog.ShowMessageBox( "Choose a .blend file in the 'Blender File' field above first.",
+        scriptDialog.ShowMessageBox( Translate( "Choose a .blend file in the 'Blender File' field above first." ),
                                     "Blender Submission" )
         return
 
@@ -2181,17 +2375,17 @@ def ValidateRenderOptions():
         resolutionX = int( combination.get( "resolution_x", 0 ) or 0 )
         resolutionY = int( combination.get( "resolution_y", 0 ) or 0 )
         if ( resolutionX > 0 ) != ( resolutionY > 0 ):
-            return ( "The combination '%s' has only one of Res X and Res Y set.\n\n"
-                     "Set both, or leave both at 0 to use the resolution stored in the .blend file."
+            return ( Translate( "The combination '%s' has only one of Res X and Res Y set.\n\n"
+                     "Set both, or leave both at 0 to use the resolution stored in the .blend file." )
                      % label )
 
         frames = str( combination.get( "frames", "" ) ).strip()
         if frames == "" or not FrameUtils.FrameRangeValid( frames ):
-            return ( "The frame list of the combination '%s' (%s) is not valid.\n\n"
-                     "Use a range or a list, for example 1-100 or 1-10,20-30." % ( label, frames ) )
+            return ( Translate( "The frame list of the combination '%s' (%s) is not valid.\n\n"
+                     "Use a range or a list, for example 1-100 or 1-10,20-30." ) % ( label, frames ) )
 
         if int( combination.get( "chunk_size", 0 ) or 0 ) < 1:
-            return "The frames per task of the combination '%s' has to be at least 1." % label
+            return Translate( "The frames per task of the combination '%s' has to be at least 1." ) % label
 
     return ""
 
@@ -2263,11 +2457,11 @@ def ResolveDetailValue( key, value, defaults ):
 
     if text == USE_SCENE_SETTING:
         resolved = str( defaults.get( key, "" ) or "" )
-        return resolved if resolved != "" else "from the .blend file"
+        return resolved if resolved != "" else Translate( "from the .blend file" )
 
     if key in ( "resolution_x", "resolution_y" ) and int( value or 0 ) <= 0:
         resolved = int( defaults.get( key, 0 ) or 0 )
-        return str( resolved ) if resolved > 0 else "from the .blend file"
+        return str( resolved ) if resolved > 0 else Translate( "from the .blend file" )
 
     return text
 
@@ -2283,22 +2477,22 @@ def SubmissionDetails( jobs, values ):
 
     for index, job in enumerate( jobs, start=1 ):
         lines.append( "%d) %s" % ( index, job.get( "name", "" ) ) )
-        lines.append( "   %-17s: %s / %s / %s" % ( "Combination", job.get( "scene", "" ),
+        lines.append( "   %-17s: %s / %s / %s" % ( Translate( "Combination" ), job.get( "scene", "" ),
                                                     job.get( "view_layer", "" ), job.get( "camera", "" ) ) )
 
         defaults = SceneDefaultsFor( job.get( "scene", "" ) )
         for label, key in DETAIL_FIELDS:
             lines.append( "   %-17s: %s"
-                          % ( label, ResolveDetailValue( key, job.get( key, "" ), defaults ) ) )
+                          % ( Translate( label ), ResolveDetailValue( key, job.get( key, "" ), defaults ) ) )
 
         lines.append( "" )
 
     notes = []
     if values.get( "chain_jobs" ) and len( jobs ) > 1:
-        notes.append( "Render One At A Time: every job waits for the one before it." )
+        notes.append( Translate( "Render One At A Time: every job waits for the one before it." ) )
     if values.get( "submit_scene" ) and len( jobs ) > 1:
-        notes.append( "'Submit Blender Scene File With The Job' is enabled, so each of the %d jobs "
-                      "carries its own copy of the .blend file." % len( jobs ) )
+        notes.append( Translate( "'Submit Blender Scene File With The Job' is enabled, so each of the %d jobs "
+                                "carries its own copy of the .blend file." ) % len( jobs ) )
 
     if notes:
         lines.append( "" )
@@ -2309,7 +2503,7 @@ def SubmissionDetails( jobs, values ):
 
 def ConfirmationHeadline( jobs ):
     # type: (list) -> str
-    return "Submits %d job%s" % ( len( jobs ), "" if len( jobs ) == 1 else "s" )
+    return TranslateFormat( "Submits %d job%s", len( jobs ), "" if len( jobs ) == 1 else "s" )
 
 
 def BuildConfirmationDialog( jobs, values ):
@@ -2322,7 +2516,7 @@ def BuildConfirmationDialog( jobs, values ):
         parent = combinationTable.window()
 
     dialog = QtWidgets.QDialog( parent )
-    dialog.setWindowTitle( "Confirm Submission" )
+    dialog.setWindowTitle( Translate( "Confirm Submission" ) )
 
     layout = QtWidgets.QVBoxLayout( dialog )
 
@@ -2365,7 +2559,7 @@ def ConfirmSubmission( jobs, values ):
         LogCellEvent( "confirmation dialog not available (%s); using a message box" % error )
         return scriptDialog.ShowMessageBox(
             "%s\n\n%s" % ( ConfirmationHeadline( jobs ), SubmissionDetails( jobs, values ) ),
-            "Confirm Submission", ( "Yes", "No" ) ) == "Yes"
+            Translate( "Confirm Submission" ), ( "Yes", "No" ) ) == "Yes"
 
     return dialog.exec_() == QtWidgets.QDialog.Accepted
 
@@ -2387,10 +2581,10 @@ def SubmitButtonPressed(*args):
     # Check if blender files exist.
     sceneFile = scriptDialog.GetValue( "SceneBox" )
     if( not File.Exists( sceneFile ) ):
-        scriptDialog.ShowMessageBox( "The Blender file %s does not exist" % sceneFile, "Error" )
+        scriptDialog.ShowMessageBox( Translate( "The Blender file %s does not exist" ) % sceneFile, "Error" )
         return
     elif (not scriptDialog.GetValue("SubmitSceneBox") and PathUtils.IsPathLocal(sceneFile)):
-        result = scriptDialog.ShowMessageBox( "The Blender file %s is local. Are you sure you want to continue?" % sceneFile, "Warning", ("Yes","No") )
+        result = scriptDialog.ShowMessageBox( Translate( "The Blender file %s is local. Are you sure you want to continue?" ) % sceneFile, "Warning", ("Yes","No") )
         if(result=="No"):
             return
 
@@ -2425,16 +2619,16 @@ def SubmitButtonPressed(*args):
 
     if not jobs:
         scriptDialog.ShowMessageBox(
-            "Nothing is ticked in the combination tree, so there is nothing to submit.\n\n"
+            Translate( "Nothing is ticked in the combination tree, so there is nothing to submit.\n\n"
             "Tick at least one scene / view layer / camera combination (right-click an item for "
-            "Select All).", "Error" )
+            "Select All)." ), "Error" )
         return
 
     if len( jobs ) > 1 and jobs[0][ "output_file" ] == "":
         scriptDialog.ShowMessageBox(
-            "Rendering %d jobs needs an output file: without one every job would write to the path "
+            Translate( "Rendering %d jobs needs an output file: without one every job would write to the path "
             "stored in the .blend file and they would overwrite each other.\n\n"
-            "Fill in the 'Output File' column of the table, then submit again." % len( jobs ), "Error" )
+            "Fill in the 'Output File' column of the table, then submit again." ) % len( jobs ), "Error" )
         return
 
     # Two rows writing the same file would silently overwrite each other's frames.
@@ -2444,9 +2638,9 @@ def SubmitButtonPressed(*args):
         len( [ other for other in jobs if other[ "output_file" ] == job[ "output_file" ] ] ) > 1 ) )
     if duplicatePaths:
         scriptDialog.ShowMessageBox(
-            "These rows write to the same output file:\n\n  %s\n\n"
+            Translate( "These rows write to the same output file:\n\n  %s\n\n"
             "Give them different file names. Right-click an output path for presets that use the "
-            "view layer and camera of the row." % "\n  ".join( duplicatePaths ), "Error" )
+            "view layer and camera of the row." ) % "\n  ".join( duplicatePaths ), "Error" )
         return
 
     if len( jobs ) > 1:
@@ -2456,7 +2650,7 @@ def SubmitButtonPressed(*args):
     try:
         filePairs = WriteJobFiles( values, jobs )
     except Exception as error:
-        scriptDialog.ShowMessageBox( "Could not write the job files:\n\n%s" % error, "Error" )
+        scriptDialog.ShowMessageBox( Translate( "Could not write the job files:\n\n%s" ) % error, "Error" )
         return
 
     # Now submit the job(s).

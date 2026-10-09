@@ -1081,6 +1081,54 @@ def __main__():
             check("BatchName" not in jobText, "a single job is not grouped")
 
         print("")
+        print("the window follows the language Blender is set to")
+        check(module.Translate("Blender File") == "Blender File",
+              "without a language the labels stay English")
+        check(module.TranslateFormat("%d of %d combinations ticked.", 1, 4)
+              == "1 of 4 combinations ticked.", "and so do the formatted ones")
+
+        savedLanguage = os.environ.get(module.LANGUAGE_ENVIRONMENT_VARIABLE)
+        os.environ[module.LANGUAGE_ENVIRONMENT_VARIABLE] = "zh_HANS"
+        try:
+            check(module.Translate("Blender File") == u"Blender 文件",
+                  "the environment override translates: %r" % module.Translate("Blender File"))
+            check(module.TranslateFormat("%d of %d combinations ticked.", 1, 4) == u"已勾选 1 / 4 个组合。",
+                  "formatted labels too: %r" % module.TranslateFormat("%d of %d combinations ticked.", 1, 4))
+            check(module.Translate("Not translated at all") == "Not translated at all",
+                  "an unknown string is returned unchanged")
+        finally:
+            if savedLanguage is None:
+                del os.environ[module.LANGUAGE_ENVIRONMENT_VARIABLE]
+            else:
+                os.environ[module.LANGUAGE_ENVIRONMENT_VARIABLE] = savedLanguage
+
+        module2, commands2, messages2, shown2 = LoadSubmissionModule(work)
+        chineseContext = dict(context)
+        chineseContext["language"] = "zh_HANS"
+        module2.__main__(
+            sceneFile,
+            "1-10",
+            os.path.join(outputDirectory, "beauty_####.png"),
+            "0",
+            "64bit",
+            base64.b64encode(json.dumps(chineseContext).encode("utf-8")).decode("ascii"),
+        )
+        check(module2.combinationTree.headerItem().text(0) == u"场景 / 渲染层 / 相机",
+              "the tree header is translated: %r" % module2.combinationTree.headerItem().text(0))
+        check(module2.combinationTable.horizontalHeaderItem(0).text() == u"组合",
+              "the table headers are translated: %r"
+              % module2.combinationTable.horizontalHeaderItem(0).text())
+        check(u"已勾选" in str(module2.scriptDialog.GetValue("TreeHintBox")),
+              "the hint is translated: %r" % module2.scriptDialog.GetValue("TreeHintBox"))
+        chineseSceneItem = module2.combinationTree.topLevelItem(0)
+        check(u"全选" in MenuLabels(module2, chineseSceneItem),
+              "the context menu is translated: %s" % MenuLabels(module2, chineseSceneItem))
+        check(module2.Translate("Submit Blender Scene File With The Job") == u"随作业提交 Blender 场景文件",
+              "and the Blender Options page labels are translated")
+        check(module2.scriptDialog.GetValue("ChainJobsBox") is not None,
+              "while the control names stay English (GetValue still works)")
+
+        print("")
         print("a context without the per-scene map is reported instead of silently showing one scene")
         module2, commands2, messages2, shown2 = LoadSubmissionModule(work)
         oldContext = dict(context)

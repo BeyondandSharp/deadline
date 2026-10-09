@@ -549,6 +549,24 @@ The `.blend` itself is only read when you press **Read From File**.
 
 ## The render tree and the per-combination options
 
+### Language
+
+The window follows the language **Blender itself is set to**: the Blender side sends its
+locale (`bpy.app.translations.locale`) in the submission context and every label of the dialog
+that belongs to this script goes through `Translate()`. There is a table for Simplified and
+Traditional Chinese (`zh_HANS` / `zh_HANT`) and the mechanism is a plain dict, so another
+language is another dict.
+
+Translated: the page labels, the captions of the check boxes, the tree and table headers, the
+context menus, the hint line, the buttons of this script, the confirmation and the messages.
+**Not** translated: the tooltips (they stay English for now), the names Deadline uses for its own
+controls, and the values of the settings - `Use Scene Setting` is data that also shows up in Job
+Properties, so it keeps its name. A Monitor submission has no Blender to ask and stays English.
+
+For a test run the language can be forced with the environment variable `DLB_LANGUAGE`, e.g.
+`DLB_LANGUAGE=zh_HANS`. `custom/tests/test_submission_dialog.py` builds the dialog in Chinese and
+checks the translated tree header, table headers, hint and menu.
+
 The submission dialog is built around **one tree** and **one table**:
 
 ```

@@ -129,6 +129,25 @@ def GetSceneDetails():
         for scene in bpy.data.scenes
     )
 
+def GetBlenderLanguage():
+    """The language Blender itself is running in, for the submission dialog's translations.
+
+    bpy.app.translations.locale is the language actually in use (it follows the user preference
+    and reflects any command line override); the preference is the fallback.
+    """
+    try:
+        locale = str(bpy.app.translations.locale)
+        if locale != "" and locale != "en_US":
+            return locale
+    except Exception:
+        pass
+
+    try:
+        return str(bpy.context.preferences.view.language)
+    except Exception:
+        return ""
+
+
 def GetActiveViewLayer(scene):
     """The view layer the artist is currently looking at.
 
@@ -151,6 +170,7 @@ def BuildSubmitContext(scene):
         "version": GetBlenderVersion(),
         "version_full": GetBlenderVersionFull(),
         "engine": str( scene.render.engine ),
+        "language": GetBlenderLanguage(),
         "active_scene": scene.name,
         "scenes": [ s.name for s in bpy.data.scenes ],
         "view_layers": [ layer.name for layer in scene.view_layers ],
