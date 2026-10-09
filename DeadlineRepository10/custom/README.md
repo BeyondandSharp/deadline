@@ -526,6 +526,28 @@ the next step rather than this one.
 
 ## Monitor job script: Blender Render Options
 
+The dialog opens at the **smallest size it can be dragged to** (`minimumSizeHint`) and is
+laid out as: a full-width **READ FROM FILE** button first (upper case, spanning all three
+columns, a little taller than a normal button; its long explanation is its tooltip, because a
+long label would decide the window's minimum width), then Scene, View Layer, Camera, Render
+Engine, Image Format, Cycles GPU Device, Resolution X / Y (one pair of fields, flush against each
+other), Strict Error Checking, Override Camera Markers below it, Blender Executable, Applies to,
+and the Save / Close buttons. The status line that used to sit on top is gone, and so is the short
+status line that replaced it: what was read is written to the log (`dialog opens at its minimum
+size …`, `read result: …`) and the drop-downs show it.
+
+The button carries the state of the last read: **pink** with `READ FROM FILE` while nothing has
+been read, **green** with `DONE` after the names came out of the file, **red** with `FAILED` when
+the file could not be read (the error dialog and the log have the reason). Pressing it again starts
+from pink, so a second attempt is recognisable.
+
+The dialog is translated as well, and it decides by the **language of the operating system**
+(`CultureInfo.CurrentUICulture`, falling back to `LANGUAGE` / `LC_ALL` / `LANG`) - the Monitor has
+no Blender to ask, unlike the submission dialog, which uses Blender's language. `DLB_LANGUAGE`
+overrides it, which is how the tests pin a language. Translated are the labels, the check box
+captions, the buttons (including `READ FROM FILE` / `DONE` / `FAILED`) and the messages; the
+tooltips stay English, as in the submission dialog.
+
 **Monitor → Jobs panel → right-click a job → Scripts → Blender Render Options…**
 
 This is the picker that Job Properties cannot provide: real drop-downs for Scene, View Layer
